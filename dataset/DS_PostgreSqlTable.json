@@ -1,5 +1,5 @@
 {
-	"name": "PostgreSqlTable1",
+	"name": "DS_PostgreSqlTable",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "LS_Postgre",

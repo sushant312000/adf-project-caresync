@@ -41,13 +41,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "PostgreSqlTable1",
+						"referenceName": "DS_PostgreSqlTable",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "Parquet1",
+						"referenceName": "DS_Parquet",
 						"type": "DatasetReference",
 						"parameters": {
 							"container": "landing",
