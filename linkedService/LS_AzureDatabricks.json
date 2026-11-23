@@ -12,7 +12,15 @@
 					"type": "LinkedServiceReference"
 				},
 				"secretName": "azure-db-token"
-			}
+			},
+			"newClusterNodeType": "Standard_NC6s_v3",
+			"newClusterNumOfWorker": "1",
+			"newClusterSparkEnvVars": {
+				"PYSPARK_PYTHON": "/databricks/python3/bin/python3"
+			},
+			"newClusterVersion": "14.3.x-gpu-ml-scala2.12",
+			"clusterOption": "Fixed",
+			"newClusterInitScripts": []
 		}
 	}
 }
