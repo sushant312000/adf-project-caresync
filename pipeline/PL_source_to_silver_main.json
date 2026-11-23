@@ -50,20 +50,42 @@
 					},
 					"activities": [
 						{
-							"name": "test",
-							"type": "SetVariable",
+							"name": "Ingest from source to silver",
+							"type": "ExecutePipeline",
 							"dependsOn": [],
 							"policy": {
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"pipeline": {
+									"referenceName": "PL_source_to_silver_inner",
+									"type": "PipelineReference"
+								},
+								"waitOnCompletion": true,
+								"parameters": {
+									"table_id": {
+										"value": "@item().table_id",
+										"type": "Expression"
+									}
+								}
+							}
+						},
+						{
+							"name": "Script1",
+							"type": "Script",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
 								"secureOutput": false,
 								"secureInput": false
 							},
 							"userProperties": [],
 							"typeProperties": {
-								"variableName": "test",
-								"value": {
-									"value": "@item().table_id",
-									"type": "Expression"
-								}
+								"scripts": [],
+								"scriptBlockExecutionTimeout": "02:00:00"
 							}
 						}
 					]
