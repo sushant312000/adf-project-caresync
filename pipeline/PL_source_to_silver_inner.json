@@ -185,6 +185,14 @@
 						"landing_timestamp": {
 							"value": "@variables('start_time')",
 							"type": "Expression"
+						},
+						"merge_keys": {
+							"value": "@coalesce(activity('Read table details').output.firstRow.merge_keys, '')",
+							"type": "Expression"
+						},
+						"load_type": {
+							"value": "@activity('Read table details').output.firstRow.load_type",
+							"type": "Expression"
 						}
 					}
 				},
@@ -306,6 +314,25 @@
 							}
 						}
 					]
+				}
+			},
+			{
+				"name": "check load type and update watermark",
+				"type": "IfCondition",
+				"dependsOn": [
+					{
+						"activity": "bronze to silver",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"expression": {
+						"value": "@not(equals(activity('Read table details').output.firstRow.load_type, 'FULL'))",
+						"type": "Expression"
+					}
 				}
 			}
 		],
